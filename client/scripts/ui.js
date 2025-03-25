@@ -27,7 +27,7 @@ class PeersUI {
     if ($(peer.id)) return; // peer already exists
     const peerUI = new PeerUI(peer);
     $$("x-peers").appendChild(peerUI.$el);
-    setTimeout((e) => window.animateBackground(false), 1750); // Stop animation
+    // setTimeout((e) => window.animateBackground(false), 99999750); // Stop animation
   }
 
   _onPeers(peers) {
@@ -649,5 +649,5 @@ document.body.onclick = (e) => {
   // safari hack to fix audio
   document.body.onclick = null;
   if (!/.*Version.*Safari.*/.test(navigator.userAgent)) return;
-  blop.play();
+  // blop.play();
 };

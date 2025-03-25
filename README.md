@@ -1,13 +1,13 @@
-# airdroid
+# ShareDrop.it
 
-AirDroid.io is build on top of Snapdrop, a P2P file sharing service. This fork is intended to be a more secure version of Snapdrop, with the following features:
+ShareDrop.it is build on top of Snapdrop, a P2P file sharing service. This fork is intended to be a more secure version of Snapdrop, with the following features:
 
-[airdroid](https://airdroid.io): Secured P2P file sharing in your browser. Inspired by Apple's Airdrop.
+[ShareDrop](https://ShareDrop.it): Secured P2P file sharing in your browser. Inspired by Apple's Airdrop.
 
-Visit [airdroid.io](https://airdroid.io)
+Visit [ShareDrop.it](https://ShareDrop.it)
 Visit [Snapdrop](https://snapdrop.net)
 
-## Classic airdroid is built with the following awesome technologies
+## Classic ShareDrop is built with the following awesome technologies
 
 - Vanilla HTML5 / ES6 / CSS3 frontend
 - [WebRTC](http://webrtc.org/) / [WebSockets](http://www.websocket.org/)

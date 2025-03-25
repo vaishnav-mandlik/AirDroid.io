@@ -7,8 +7,8 @@ First, [Install docker with docker-compose.](https://docs.docker.com/compose/ins
 Then, clone the repository:
 
 ```
-    git clone git@github.comt:vaishnav-mandlik/AirDroid.io.git
-    cd airdroid.io
+    git clone git@github.comt:vaishnav-mandlik/sharedrop.it.git
+    cd sharedrop.it
     docker-compose up -d
 ```
 

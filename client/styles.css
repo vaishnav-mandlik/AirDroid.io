@@ -6,7 +6,65 @@
   --peer-width: 120px;
   --text-color: #333;
   --bg-color: #fafafa;
-  --bg-color-secondary: #f1f3f4;
+  --surface-color: #ffffff;
+  --bg-secondary: #f1f3f4;
+  --dialog-bg: rgba(0, 0, 0, 0.61);
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #ffffff;
+    --bg-color: #1a1a1a;
+    --surface-color: #2d2d2d;
+    --bg-secondary: #2d2d2d;
+    --dialog-bg: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Manual overrides */
+body.dark {
+  --text-color: #ffffff;
+  --bg-color: #1a1a1a;
+  --surface-color: #2d2d2d;
+  --bg-secondary: #2d2d2d;
+  --dialog-bg: rgba(255, 255, 255, 0.15);
+}
+
+body.light {
+  --text-color: #333;
+  --bg-color: #fafafa;
+  --surface-color: #ffffff;
+  --bg-secondary: #f1f3f4;
+  --dialog-bg: rgba(0, 0, 0, 0.61);
+}
+
+/* Base styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+x-paper {
+  background: var(--surface-color);
+  color: var(--text-color);
+}
+
+.textarea {
+  background: var(--bg-secondary);
+  color: var(--text-color);
+}
+
+/* Theme toggle styling */
+#theme-toggle {
+  margin-left: 8px;
+  transition: transform 0.2s;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1);
 }
 
 /* Layout */

@@ -31,7 +31,7 @@ class SnapdropServer {
 
     this._rooms = {};
 
-    console.log("AirDroid is running on port", port);
+    console.log("sharedrop.it is running on port", port);
   }
 
   _onConnection(peer) {
