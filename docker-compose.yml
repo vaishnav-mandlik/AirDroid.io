@@ -1,25 +1,30 @@
-# version: "3"
+version: "3.8"
+
 services:
   node:
     image: "node:lts-alpine"
     user: "node"
     working_dir: /home/node/app
     volumes:
-      - ./server/:/home/node/app
-    command: ash -c "npm i && node index.js"
+      - ./server:/home/node/app
+    command: sh -c "npm ci && node index.js"
+    networks:
+      - sharedrop-net
+
   nginx:
-    build:
-      context: ./docker/
-      dockerfile: nginx-with-openssl.Dockerfile
-    image: "nginx-with-openssl"
+    image: nginx:alpine
     volumes:
-      - ./client:/usr/share/nginx/html
+      - ./client:/usr/share/nginx/html:ro
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./docker/certs:/etc/ssl/certs
-      - ./docker/openssl:/mnt/openssl
+      - /etc/letsencrypt:/etc/letsencrypt
     ports:
-      - "8080:80"
+      - "80:80"
       - "443:443"
-    env_file: ./docker/fqdn.env
-    entrypoint: /mnt/openssl/create.sh
-    command: ["nginx", "-g", "daemon off;"]
+    depends_on:
+      - node
+    networks:
+      - sharedrop-net
+
+networks:
+  shared-drop-net:
+    driver: bridge
