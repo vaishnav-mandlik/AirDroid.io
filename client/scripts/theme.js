@@ -2,8 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
   let currentTheme = localStorage.getItem("theme") || "system";
 
-  // Apply initial theme
-  setTheme(currentTheme);
+  if (currentTheme === "system") {
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    currentTheme = systemPrefersDark ? "dark" : "light";
+  }
+  setTheme(currentTheme, false);
 
   themeToggle.addEventListener("click", (e) => {
     e.preventDefault();
@@ -14,44 +19,36 @@ document.addEventListener("DOMContentLoaded", () => {
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", () => {
-      if (currentTheme === "system") {
-        updateBodyClass();
-        updateIcon();
+      if (localStorage.getItem("theme") === "system") {
+        setTheme("system");
       }
     });
 
   function toggleTheme() {
-    // Simplified toggle between light/dark only
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    const isCurrentlyDark = document.body.classList.contains("dark");
+    const newTheme = isCurrentlyDark ? "light" : "dark";
     setTheme(newTheme);
   }
 
-  function setTheme(theme) {
-    currentTheme = theme;
-    localStorage.setItem("theme", theme);
-    updateBodyClass();
-    updateIcon();
-  }
-
-  function updateBodyClass() {
+  function setTheme(theme, save = true) {
+    if (save) {
+      localStorage.setItem("theme", theme);
+    }
     document.body.classList.remove("dark", "light");
 
-    if (currentTheme === "system") {
+    if (theme === "system") {
       const systemDark = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
       document.body.classList.add(systemDark ? "dark" : "light");
     } else {
-      document.body.classList.add(currentTheme);
+      document.body.classList.add(theme);
     }
+    updateIcon();
   }
 
   function updateIcon() {
-    const isDark =
-      currentTheme === "dark" ||
-      (currentTheme === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-
+    const isDark = document.body.classList.contains("dark");
     themeToggle.innerHTML = `
           <svg class="icon">
               <use xlink:href="#${isDark ? "sun" : "moon"}"/>
