@@ -1,0 +1,6 @@
+sharedrop.it {
+    reverse_proxy node:3000
+    log {
+        output file /var/log/caddy/access.log
+    }
+}
