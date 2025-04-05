@@ -1,4 +1,4 @@
 node_modules
 .DS_Store
-fqdn.env
+# fqdn.env
 /docker/certs
